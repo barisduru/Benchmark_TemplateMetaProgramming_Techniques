@@ -1,0 +1,38 @@
+#include "../../include/utility.hpp"
+
+#include <type_traits>
+
+template<template<typename >class Predicate, typename Container,typename Result = list<>>
+struct remove_if;
+
+template<template<typename >class Predicate,typename T0,typename ...Ts,typename Result>
+struct remove_if<Predicate,list<T0,Ts...>,Result>{
+	using type = typename std::conditional<Predicate<T0>::value,
+							remove_if<Predicate,list<Ts...>,Result>,
+							remove_if<Predicate,list<Ts...>,peace::push_back_t<Result,T0>>
+							>::type::type;
+};
+
+template<template<typename >class Predicate,typename Result>
+struct remove_if<Predicate,list<>,Result>{
+	using type = Result;
+};
+
+template<template<typename >class Predicate,typename Container>
+using remove_if_t = typename remove_if<Predicate,Container>::type;
+
+template<int>
+struct S;
+
+using input = list<<%= (0..(n/2-1)).map{ |i| "S<#{i}>" }.join(', ').to_s + ", void, " + ((n/2+1)..(n-2)).map{ |i| "S<#{i}>" }.join(', ') + ", void" %>>;
+
+
+#if defined (METABENCH)
+
+  using <%= "result#{n}" %> = remove_if_t<std::is_void,input>;
+
+#endif
+
+
+int main() {}
+

@@ -1,0 +1,20 @@
+#include "utility_tacit.hpp"
+
+#include <type_traits>
+
+
+template<int>
+struct S;
+
+using input = list<<%= (0..(n/2-1)).map{ |i| "S<#{i}>" }.join(', ').to_s + ", void, " + ((n/2+1)..(n-2)).map{ |i| "S<#{i}>" }.join(', ') + ", void" %>>;
+
+
+#if defined (METABENCH)
+
+  using <%= "result#{n}" %> = unpack<remove_if<to_lazy_predicate<std::is_void>>>::template g<input>;
+
+#endif
+
+
+int main() {}
+

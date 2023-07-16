@@ -1,0 +1,45 @@
+#include "../../include/utility.hpp"
+
+
+
+<% (0..n).each do |i| %>
+	struct <%= "foo#{i}a" %> {};
+	struct <%= "foo#{i}b" %> {};
+	struct <%= "foo#{i}c" %> {};
+	struct <%= "foo#{i}d" %> {};
+
+#if defined (METABENCH)
+
+    using <%= "result#{i}a" %> = typename peace::if_<true>::template g<<%= "foo#{i}a , foo#{i}b" %>>;
+    using <%= "result#{i}b" %> = typename peace::if_<true>::template g<<%= "foo#{i}a , foo#{i}c" %>>;
+    using <%= "result#{i}c" %> = typename peace::if_<true>::template g<<%= "foo#{i}a , foo#{i}d" %>>;
+    using <%= "result#{i}d" %> = typename peace::if_<true>::template g<<%= "foo#{i}b , foo#{i}a" %>>;
+    using <%= "result#{i}e" %> = typename peace::if_<true>::template g<<%= "foo#{i}b , foo#{i}c" %>>;
+    using <%= "result#{i}f" %> = typename peace::if_<true>::template g<<%= "foo#{i}b , foo#{i}d" %>>;
+    using <%= "result#{i}g" %> = typename peace::if_<true>::template g<<%= "foo#{i}c , foo#{i}a" %>>;
+    using <%= "result#{i}h" %> = typename peace::if_<true>::template g<<%= "foo#{i}c , foo#{i}b" %>>;
+    using <%= "result#{i}i" %> = typename peace::if_<true>::template g<<%= "foo#{i}c , foo#{i}d" %>>;
+    using <%= "result#{i}j" %> = typename peace::if_<true>::template g<<%= "foo#{i}d , foo#{i}a" %>>;
+    using <%= "result#{i}k" %> = typename peace::if_<true>::template g<<%= "foo#{i}d , foo#{i}b" %>>;
+    using <%= "result#{i}l" %> = typename peace::if_<true>::template g<<%= "foo#{i}d , foo#{i}c" %>>;
+
+    using <%= "result#{i}m" %> = typename peace::if_<false>::template g<<%= "foo#{i}a , foo#{i}b" %>>;
+    using <%= "result#{i}n" %> = typename peace::if_<false>::template g<<%= "foo#{i}a , foo#{i}c" %>>;
+    using <%= "result#{i}o" %> = typename peace::if_<false>::template g<<%= "foo#{i}a , foo#{i}d" %>>;
+    using <%= "result#{i}p" %> = typename peace::if_<false>::template g<<%= "foo#{i}b , foo#{i}a" %>>;
+    using <%= "result#{i}q" %> = typename peace::if_<false>::template g<<%= "foo#{i}b , foo#{i}c" %>>;
+    using <%= "result#{i}r" %> = typename peace::if_<false>::template g<<%= "foo#{i}b , foo#{i}d" %>>;
+    using <%= "result#{i}s" %> = typename peace::if_<false>::template g<<%= "foo#{i}c , foo#{i}a" %>>;
+    using <%= "result#{i}t" %> = typename peace::if_<false>::template g<<%= "foo#{i}c , foo#{i}b" %>>;
+    using <%= "result#{i}u" %> = typename peace::if_<false>::template g<<%= "foo#{i}c , foo#{i}d" %>>;
+    using <%= "result#{i}v" %> = typename peace::if_<false>::template g<<%= "foo#{i}d , foo#{i}a" %>>;
+    using <%= "result#{i}w" %> = typename peace::if_<false>::template g<<%= "foo#{i}d , foo#{i}b" %>>;
+    using <%= "result#{i}y" %> = typename peace::if_<false>::template g<<%= "foo#{i}d , foo#{i}c" %>>;
+
+
+
+#endif
+<% end %>
+
+
+int main() {}

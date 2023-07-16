@@ -1,0 +1,1 @@
+/usr/bin/ruby -- "/home/traderbd/Desktop/C++_Projects/github/Benchmark_TemplateMetaProgramming_Techniques/build/_metabench/link.rb" /usr/bin/c++ -rdynamic CMakeFiles/speedup.if_type.dir/__/_metabench/speedup.if_type.cpp.o -o ../_metabench/speedup.if_type 

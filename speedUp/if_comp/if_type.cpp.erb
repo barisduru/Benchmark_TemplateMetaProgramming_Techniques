@@ -1,0 +1,43 @@
+#include <type_traits>
+
+
+<% (0..n).each do |i| %>
+	struct <%= "foo#{i}a" %> {};
+	struct <%= "foo#{i}b" %> {};
+	struct <%= "foo#{i}c" %> {};
+	struct <%= "foo#{i}d" %> {};
+
+#if defined (METABENCH)
+
+    using <%= "result#{i}a" %> = typename std::conditional_t<true,<%= "foo#{i}a , foo#{i}b" %>>;
+    using <%= "result#{i}b" %> = typename std::conditional_t<true,<%= "foo#{i}a , foo#{i}c" %>>;
+    using <%= "result#{i}c" %> = typename std::conditional_t<true,<%= "foo#{i}a , foo#{i}d" %>>;
+    using <%= "result#{i}d" %> = typename std::conditional_t<true,<%= "foo#{i}b , foo#{i}a" %>>;
+    using <%= "result#{i}e" %> = typename std::conditional_t<true,<%= "foo#{i}b , foo#{i}c" %>>;
+    using <%= "result#{i}f" %> = typename std::conditional_t<true,<%= "foo#{i}b , foo#{i}d" %>>;
+    using <%= "result#{i}g" %> = typename std::conditional_t<true,<%= "foo#{i}c , foo#{i}a" %>>;
+    using <%= "result#{i}h" %> = typename std::conditional_t<true,<%= "foo#{i}c , foo#{i}b" %>>;
+    using <%= "result#{i}i" %> = typename std::conditional_t<true,<%= "foo#{i}c , foo#{i}d" %>>;
+    using <%= "result#{i}j" %> = typename std::conditional_t<true,<%= "foo#{i}d , foo#{i}a" %>>;
+    using <%= "result#{i}k" %> = typename std::conditional_t<true,<%= "foo#{i}d , foo#{i}b" %>>;
+    using <%= "result#{i}l" %> = typename std::conditional_t<true,<%= "foo#{i}d , foo#{i}c" %>>;
+
+    using <%= "result#{i}m" %> = typename std::conditional_t<false,<%= "foo#{i}a , foo#{i}b" %>>;
+    using <%= "result#{i}n" %> = typename std::conditional_t<false,<%= "foo#{i}a , foo#{i}c" %>>;
+    using <%= "result#{i}o" %> = typename std::conditional_t<false,<%= "foo#{i}a , foo#{i}d" %>>;
+    using <%= "result#{i}p" %> = typename std::conditional_t<false,<%= "foo#{i}b , foo#{i}a" %>>;
+    using <%= "result#{i}q" %> = typename std::conditional_t<false,<%= "foo#{i}b , foo#{i}c" %>>;
+    using <%= "result#{i}r" %> = typename std::conditional_t<false,<%= "foo#{i}b , foo#{i}d" %>>;
+    using <%= "result#{i}s" %> = typename std::conditional_t<false,<%= "foo#{i}c , foo#{i}a" %>>;
+    using <%= "result#{i}t" %> = typename std::conditional_t<false,<%= "foo#{i}c , foo#{i}b" %>>;
+    using <%= "result#{i}u" %> = typename std::conditional_t<false,<%= "foo#{i}c , foo#{i}d" %>>;
+    using <%= "result#{i}v" %> = typename std::conditional_t<false,<%= "foo#{i}d , foo#{i}a" %>>;
+    using <%= "result#{i}w" %> = typename std::conditional_t<false,<%= "foo#{i}d , foo#{i}b" %>>;
+    using <%= "result#{i}y" %> = typename std::conditional_t<false,<%= "foo#{i}d , foo#{i}c" %>>;
+
+
+#endif
+<% end %>
+
+
+int main() {}
